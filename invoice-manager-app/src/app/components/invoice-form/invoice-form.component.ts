@@ -18,8 +18,8 @@ export class InvoiceFormComponent implements OnInit {
   expenses: Expense[] = [
     {
       id: uuid(),
-      description: '',
-      price: 0,
+      description: undefined,
+      price: undefined,
     },
   ];
 
@@ -30,12 +30,12 @@ export class InvoiceFormComponent implements OnInit {
   addExpense() {
     this.expenses.push({
       id: uuid(),
-      description: '',
-      price: 0,
+      description: undefined,
+      price: undefined,
     });
   }
 
-  saveInvoice() {
+  onSubmit() {
     console.log('invoice:', this.invoice);
     console.log('expenses:', this.expenses);
   }
