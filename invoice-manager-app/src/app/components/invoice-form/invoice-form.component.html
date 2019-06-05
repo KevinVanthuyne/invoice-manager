@@ -1,0 +1,20 @@
+<p>Customer id: <input type="text" [(ngModel)]="invoice.customerId" /></p>
+<p>Expenses</p>
+<ul>
+  <li *ngFor="let expense of expenses">
+    <input
+      type="text"
+      [(ngModel)]="expense.description"
+      placeholder="Description"
+      name="description"
+    />
+    <input
+      type="number"
+      [(ngModel)]="expense.price"
+      placeholder="Price"
+      name="price"
+    />
+  </li>
+  <li><button (click)="addExpense()">Add expense</button></li>
+</ul>
+<button (click)="saveInvoice()">Save invoice</button>
