@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import uuid from 'uuid/v4';
+
 import { Invoice } from 'src/app/models/Invoice';
 import { Expense } from 'src/app/models/Expense';
 
@@ -8,15 +10,29 @@ import { Expense } from 'src/app/models/Expense';
   styleUrls: ['./invoice-form.component.css'],
 })
 export class InvoiceFormComponent implements OnInit {
-  invoice: Invoice = new Invoice();
-  expenses: Expense[] = [new Expense()];
+  invoice: Invoice = {
+    id: uuid(),
+    customerId: '',
+    expenses: [],
+  };
+  expenses: Expense[] = [
+    {
+      id: uuid(),
+      description: '',
+      price: 0,
+    },
+  ];
 
   constructor() {}
 
   ngOnInit() {}
 
   addExpense() {
-    this.expenses.push(new Expense());
+    this.expenses.push({
+      id: uuid(),
+      description: '',
+      price: 0,
+    });
   }
 
   saveInvoice() {
