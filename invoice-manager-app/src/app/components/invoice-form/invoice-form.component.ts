@@ -35,7 +35,12 @@ export class InvoiceFormComponent implements OnInit {
     });
   }
 
+  removeExpense(index: number) {
+    this.expenses.splice(index, 1);
+  }
+
   onSubmit() {
+    console.log('Submitting');
     console.log('invoice:', this.invoice);
     console.log('expenses:', this.expenses);
   }

@@ -25,7 +25,7 @@
   <div class="form-group">
     <label for="expenses">Expenses</label>
     <ul>
-      <li *ngFor="let expense of expenses">
+      <li *ngFor="let expense of expenses; index as i">
         <input
           type="text"
           [(ngModel)]="expense.description"
@@ -38,8 +38,9 @@
           placeholder="Price"
           name="price"
         />
+        <button type="button" (click)="removeExpense(i)">x</button>
       </li>
-      <li><button (click)="addExpense()">Add expense</button></li>
+      <li><button type="button" (click)="addExpense()">Add expense</button></li>
     </ul>
   </div>
 
