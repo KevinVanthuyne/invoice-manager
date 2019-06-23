@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray } from '@angular/forms';
 import uuid from 'uuid/v4';
+import { Router } from '@angular/router';
+
+import { InvoiceService } from '../../services/invoice.service';
 
 @Component({
   selector: 'app-invoice-form',
@@ -11,12 +14,24 @@ export class InvoiceFormComponent implements OnInit {
   invoiceForm = this.formBuilder.group({
     id: [uuid()],
     customerId: [''],
-    expenses: this.formBuilder.array([this.createEmptyExpense()]),
+    expenses: this.formBuilder.array([]),
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private invoiceService: InvoiceService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const invoice = this.invoiceService.get();
+    if (invoice) {
+      invoice.expenses.forEach(() => this.addExpense());
+      this.invoiceForm.setValue(invoice);
+    } else {
+      this.addExpense();
+    }
+  }
 
   addExpense() {
     this.expenses.push(this.createEmptyExpense());
@@ -24,11 +39,6 @@ export class InvoiceFormComponent implements OnInit {
 
   removeExpense(index: number) {
     this.expenses.removeAt(index);
-  }
-
-  onSubmit() {
-    console.log('Submitting');
-    console.log('invoice:', this.invoiceForm.value);
   }
 
   get expenses() {
@@ -40,6 +50,17 @@ export class InvoiceFormComponent implements OnInit {
       id: [uuid()],
       description: [''],
       price: [''],
+    });
+  }
+
+  onSubmit() {
+    this.invoiceService.save(this.invoiceForm.value);
+    this.router.navigate(['/invoice-preview']);
+  }
+
+  clear() {
+    this.invoiceForm.reset({
+      id: this.invoiceForm.value.id,
     });
   }
 }
