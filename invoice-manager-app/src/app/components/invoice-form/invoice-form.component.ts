@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormArray } from '@angular/forms';
 import uuid from 'uuid/v4';
-
-import { Invoice } from 'src/app/models/Invoice';
-import { Expense } from 'src/app/models/Expense';
 
 @Component({
   selector: 'app-invoice-form',
@@ -10,38 +8,38 @@ import { Expense } from 'src/app/models/Expense';
   styleUrls: ['./invoice-form.component.css'],
 })
 export class InvoiceFormComponent implements OnInit {
-  invoice: Invoice = {
-    id: uuid(),
-    customerId: '',
-    expenses: [],
-  };
-  expenses: Expense[] = [
-    {
-      id: uuid(),
-      description: undefined,
-      price: undefined,
-    },
-  ];
+  invoiceForm = this.formBuilder.group({
+    id: [uuid()],
+    customerId: [''],
+    expenses: this.formBuilder.array([this.createEmptyExpense()]),
+  });
 
-  constructor() {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {}
 
   addExpense() {
-    this.expenses.push({
-      id: uuid(),
-      description: undefined,
-      price: undefined,
-    });
+    this.expenses.push(this.createEmptyExpense());
   }
 
   removeExpense(index: number) {
-    this.expenses.splice(index, 1);
+    this.expenses.removeAt(index);
   }
 
   onSubmit() {
     console.log('Submitting');
-    console.log('invoice:', this.invoice);
-    console.log('expenses:', this.expenses);
+    console.log('invoice:', this.invoiceForm.value);
+  }
+
+  get expenses() {
+    return this.invoiceForm.get('expenses') as FormArray;
+  }
+
+  createEmptyExpense() {
+    return this.formBuilder.group({
+      id: [uuid()],
+      description: [''],
+      price: [''],
+    });
   }
 }
