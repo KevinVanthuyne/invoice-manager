@@ -1,0 +1,26 @@
+<h2>Invoice Preview</h2>
+<p>A preview of the pdf invoice can be seen below. Is this invoice correct?</p>
+<hr />
+
+<div id="pdf">
+  <h1>Invoice</h1>
+
+  <p>Invoice number: {{ invoice.id }}</p>
+  <p>Customer number: {{ invoice.customerId }}</p>
+
+  <table>
+    <tr>
+      <th>Description</th>
+      <th>Price</th>
+    </tr>
+    <tr *ngFor="let expense of invoice.expenses">
+      <td>{{ expense.description }}</td>
+      <td>{{ expense.price }}</td>
+    </tr>
+  </table>
+</div>
+
+<hr />
+
+<button type="button" (click)="save()">Save pdf</button>
+<button type="button" (click)="cancel()">Cancel</button>
