@@ -15,6 +15,7 @@ export class InvoiceFormComponent implements OnInit {
     id: [uuid()],
     customerId: [''],
     expenses: this.formBuilder.array([]),
+    tax: [21],
   });
 
   constructor(
