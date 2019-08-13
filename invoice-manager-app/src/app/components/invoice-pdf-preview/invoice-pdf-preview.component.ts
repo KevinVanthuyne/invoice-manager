@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-import { InvoiceService } from 'src/app/services/invoice.service';
-import { Invoice } from 'src/app/models/Invoice';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,13 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./invoice-pdf-preview.component.css'],
 })
 export class InvoicePdfPreviewComponent implements OnInit {
-  invoice: Invoice;
+  constructor(private router: Router) {}
 
-  constructor(private invoiceService: InvoiceService, private router: Router) {}
-
-  ngOnInit() {
-    this.invoice = this.invoiceService.get();
-  }
+  ngOnInit() {}
 
   save() {
     window['html2canvas'] = html2canvas;
