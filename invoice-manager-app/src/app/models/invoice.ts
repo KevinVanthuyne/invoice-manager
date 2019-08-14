@@ -4,4 +4,5 @@ export class Invoice {
   id: string;
   customerId: string;
   expenses: Expense[];
+  tax: number;
 }

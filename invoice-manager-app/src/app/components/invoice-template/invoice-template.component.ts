@@ -35,9 +35,13 @@ export class InvoiceTemplateComponent implements OnInit {
       expenseProperties.push(property);
     });
 
-    // generate all expense rows
+    // generate all expense rows and calculate total cost
     let expensesTable = document.getElementById('expenses');
+    let tableBody = expensesTable.children[0];
+    let totalCost = 0;
+
     this.invoice.expenses.forEach(expense => {
+      totalCost += expense.price;
       let row = document.createElement('tr');
 
       expenseProperties.forEach(property => {
@@ -46,7 +50,19 @@ export class InvoiceTemplateComponent implements OnInit {
         row.appendChild(td);
       });
 
-      expensesTable.appendChild(row);
+      tableBody.insertBefore(row, expenseRow);
     });
+    tableBody.removeChild(expenseRow);
+
+    // calculate and display VAT + totals
+    let subtotal = document.getElementById('subtotal');
+    subtotal.textContent = totalCost.toString();
+
+    let tax = document.getElementById('tax');
+    tax.textContent = this.invoice.tax.toString() + '%';
+
+    let totalElement = document.getElementById('total');
+    let total = totalCost + totalCost * (this.invoice.tax / 100);
+    totalElement.textContent = total.toString();
   }
 }
