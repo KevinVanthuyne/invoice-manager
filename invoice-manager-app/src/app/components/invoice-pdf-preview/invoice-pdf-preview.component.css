@@ -1,0 +1,5 @@
+#pdf {
+  width: 593px; /* this width and height is important to fit the html onto the a4 pdf size */
+  height: 839px;
+  border: 1px solid lightgray;
+}

@@ -18,6 +18,13 @@ export class InvoicePdfPreviewComponent implements OnInit {
     window['html2canvas'] = html2canvas;
     const doc = new jsPDF('p', 'pt', 'a4');
     const savePdf = () => doc.save('invoice.pdf');
+
+    // pdf depends on size of client window and zoom
+    // TODO shouldn't be the case: whatever size the preview is displayed on the website,
+    // the resulting pdf should always be the correct size
+
+    // 100% zoom = 593px width, 839px height
+
     doc.html(document.querySelector('#pdf'), {
       callback: savePdf,
     });

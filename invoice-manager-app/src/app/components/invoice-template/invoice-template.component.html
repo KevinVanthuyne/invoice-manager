@@ -1,27 +1,54 @@
-<h1>Invoice</h1>
+<div class="container">
+  <div class="header">
+    <img
+      src="../../../assets/fakecompany.jpg"
+      alt="Fake company logo"
+      class="logo"
+    />
 
-<p>Invoice number: {{ invoice.id }}</p>
-<p>Customer number: {{ invoice.customerId }}</p>
+    <div class="company-info">
+      <p>Streetname 1 1000 City</p>
+      <p>+10 100 20 30 40</p>
+      <p>info@company.com</p>
+      <p>www.company.com</p>
+      <p>VAT: 1000 123 456</p>
+    </div>
+  </div>
 
-<table>
-  <tr>
-    <th>Description</th>
-    <th>Price</th>
-  </tr>
-  <tr *ngFor="let expense of invoice.expenses">
-    <td>{{ expense.description }}</td>
-    <td>{{ expense.price }}</td>
-  </tr>
-  <tr class="border-top">
-    <td>Subtotal</td>
-    <td>{{ subtotal }}</td>
-  </tr>
-  <tr>
-    <td>Taxes</td>
-    <td>{{ invoice.tax }}%</td>
-  </tr>
-  <tr>
-    <td>Total</td>
-    <td>{{ total }}</td>
-  </tr>
-</table>
+  <h1>Invoice</h1>
+
+  <div class="invoice-info">
+    <p>Invoice number: {{ invoice.id }}</p>
+    <p>Customer number: {{ invoice.customerId }}</p>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <tr>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
+      <tr *ngFor="let expense of invoice.expenses">
+        <td>{{ expense.description }}</td>
+        <td>€ {{ expense.price }}</td>
+      </tr>
+      <tr class="vertical-fill"></tr>
+      <tr class="border-top">
+        <td class="align-right">Subtotal</td>
+        <td>€ {{ subtotal }}</td>
+      </tr>
+      <tr>
+        <td class="align-right">Taxes</td>
+        <td>{{ invoice.tax }}%</td>
+      </tr>
+      <tr>
+        <td class="align-right">Total</td>
+        <td>€ {{ total }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p>Central Bank - CB50 1000 2000 3000 - CBCODE</p>
+  </div>
+</div>
