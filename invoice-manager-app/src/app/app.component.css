@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  display: inline-block;
+  background-color: white;
+  padding: 2em;
+  border-radius: 3px;
+}
