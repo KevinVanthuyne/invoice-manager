@@ -41,7 +41,9 @@
           name="price"
           formControlName="price"
         />
-        <button type="button" (click)="removeExpense(i)">x</button>
+        <button type="button" (click)="removeExpense(i)" class="bg-warning">
+          x
+        </button>
       </li>
       <li><button type="button" (click)="addExpense()">Add expense</button></li>
     </ul>
@@ -59,6 +61,6 @@
     %
   </div>
 
-  <button type="submit">Save invoice</button>
-  <button type="button" (click)="clear()">Clear</button>
+  <button type="submit" class="save">Save invoice</button>
+  <button type="button" (click)="clear()" class="bg-warning">Clear</button>
 </form>

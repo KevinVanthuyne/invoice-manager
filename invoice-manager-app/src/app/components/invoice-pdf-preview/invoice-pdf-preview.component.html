@@ -1,12 +1,15 @@
 <h2>Invoice Preview</h2>
-<p>A preview of the pdf invoice can be seen below. Is this invoice correct?</p>
-<hr />
+<p>A preview of the invoice can be seen below.</p>
+<p>
+  If it is correct it can be saved to a pdf file, if it is not click cancel to
+  go back.
+</p>
 
-<div id="pdf">
-  <app-invoice-template></app-invoice-template>
+<div class="wrapper">
+  <div id="pdf">
+    <app-invoice-template></app-invoice-template>
+  </div>
 </div>
 
-<hr />
-
-<button type="button" (click)="save()">Save pdf</button>
-<button type="button" (click)="cancel()">Cancel</button>
+<button type="button" (click)="save()">Save as pdf</button>
+<button type="button" (click)="cancel()" class="bg-warning">Cancel</button>

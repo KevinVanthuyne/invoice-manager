@@ -1,17 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
 
 * {
-  font-family: Helvetica, sans-serif;
+  /* font-family: Helvetica, sans-serif; */
+  font-family: 'Lato', sans-serif;
+}
+
+html {
+  background-color: rgb(245, 245, 245);
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 1em;
+  border-bottom: 1px solid lightgray;
+}
+
+.bg-warning {
+  background-color: #ffc107;
 }
 
 /* forms */
 
-form label {
+label {
   font-weight: bold;
   display: block;
   margin-bottom: 0.5rem;
 }
 
-form input {
+input {
   margin-bottom: 0.5rem;
+  margin-right: 0.7em;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding: 5px;
+  height: 20px;
+}
+
+button {
+  background-color: #03a9f4;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  margin-right: 0.7em;
+  padding: 5px 1em;
+  height: 30px;
+  cursor: pointer;
 }
