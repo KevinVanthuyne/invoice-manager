@@ -1,0 +1,27 @@
+<h1>Invoice</h1>
+
+<p>Invoice number: {{ invoice.id }}</p>
+<p>Customer number: {{ invoice.customerId }}</p>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Price</th>
+  </tr>
+  <tr *ngFor="let expense of invoice.expenses">
+    <td>{{ expense.description }}</td>
+    <td>{{ expense.price }}</td>
+  </tr>
+  <tr class="border-top">
+    <td>Subtotal</td>
+    <td>{{ subtotal }}</td>
+  </tr>
+  <tr>
+    <td>Taxes</td>
+    <td>{{ invoice.tax }}%</td>
+  </tr>
+  <tr>
+    <td>Total</td>
+    <td>{{ total }}</td>
+  </tr>
+</table>
