@@ -1,5 +1,6 @@
 export class Expense {
   id: number;
   description: string;
-  price: number;
+  unitPrice: number;
+  quantity: number;
 }

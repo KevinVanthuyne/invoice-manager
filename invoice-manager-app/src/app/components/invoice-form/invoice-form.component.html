@@ -3,7 +3,6 @@
     <label for="invoiceId">Invoice ID</label>
     <input
       type="text"
-      class="form-control"
       id="invoiceId"
       name="invoiceId"
       formControlName="id"
@@ -15,7 +14,6 @@
     <label for="customerId">Customer ID</label>
     <input
       type="text"
-      class="form-control"
       id="customerId"
       name="customerId"
       formControlName="customerId"
@@ -37,9 +35,17 @@
         />
         <input
           type="number"
-          placeholder="Price"
-          name="price"
-          formControlName="price"
+          placeholder="Quantity"
+          name="quantity"
+          formControlName="quantity"
+          class="small"
+        />
+        <input
+          type="number"
+          placeholder="Unit price"
+          name="unitPrice"
+          formControlName="unitPrice"
+          class="small"
         />
         <button type="button" (click)="removeExpense(i)" class="bg-warning">
           x
@@ -53,7 +59,7 @@
     <label for="tax">Tax</label>
     <input
       type="number"
-      class="form-control"
+      class="small"
       id="tax"
       name="tax"
       formControlName="tax"

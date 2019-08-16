@@ -51,14 +51,15 @@ export class InvoiceFormComponent implements OnInit {
     return this.formBuilder.group({
       id: [uuid()],
       description: [''],
-      price: [''],
+      quantity: [''],
+      unitPrice: [''],
     });
   }
 
   onSubmit() {
     let invoice: Invoice = this.invoiceForm.value;
     invoice.expenses = invoice.expenses.filter(
-      expense => expense.description || expense.price
+      expense => expense.description || expense.quantity || expense.unitPrice
     );
     this.invoiceService.save(invoice);
     this.router.navigate(['/invoice-preview']);
