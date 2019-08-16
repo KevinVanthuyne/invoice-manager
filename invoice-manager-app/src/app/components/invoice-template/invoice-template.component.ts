@@ -22,7 +22,7 @@ export class InvoiceTemplateComponent implements OnInit {
 
   fillInTotals() {
     this.subtotal = this.invoice.expenses.reduce(
-      (sum, expense) => sum + expense.price,
+      (sum, expense) => sum + expense.unitPrice * expense.quantity,
       0
     );
     this.total = this.subtotal + this.subtotal * (this.invoice.tax / 100);

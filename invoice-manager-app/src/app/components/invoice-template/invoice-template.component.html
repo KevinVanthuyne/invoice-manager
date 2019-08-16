@@ -26,22 +26,32 @@
     <table>
       <tr>
         <th>Description</th>
-        <th>Price</th>
+        <th>Quantity</th>
+        <th>Unit price</th>
+        <th>Amount</th>
       </tr>
       <tr *ngFor="let expense of invoice.expenses">
         <td>{{ expense.description }}</td>
-        <td>€ {{ expense.price }}</td>
+        <td>{{ expense.quantity }}</td>
+        <td>€ {{ expense.unitPrice }}</td>
+        <td>€ {{ expense.unitPrice * expense.quantity }}</td>
       </tr>
       <tr class="vertical-fill"></tr>
       <tr class="border-top">
+        <td></td>
+        <td></td>
         <td class="align-right">Subtotal</td>
         <td>€ {{ subtotal }}</td>
       </tr>
       <tr>
+        <td></td>
+        <td></td>
         <td class="align-right">Taxes</td>
         <td>{{ invoice.tax }}%</td>
       </tr>
       <tr>
+        <td></td>
+        <td></td>
         <td class="align-right">Total</td>
         <td>€ {{ total }}</td>
       </tr>
