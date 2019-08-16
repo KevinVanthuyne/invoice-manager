@@ -4,6 +4,7 @@ import uuid from 'uuid/v4';
 import { Router } from '@angular/router';
 
 import { InvoiceService } from '../../services/invoice.service';
+import { Invoice } from 'src/app/models/Invoice';
 
 @Component({
   selector: 'app-invoice-form',
@@ -55,7 +56,11 @@ export class InvoiceFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.invoiceService.save(this.invoiceForm.value);
+    let invoice: Invoice = this.invoiceForm.value;
+    invoice.expenses = invoice.expenses.filter(
+      expense => expense.description || expense.price
+    );
+    this.invoiceService.save(invoice);
     this.router.navigate(['/invoice-preview']);
   }
 
