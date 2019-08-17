@@ -18,8 +18,10 @@
   <h1>Invoice</h1>
 
   <div class="invoice-info">
+    <p>Date: {{ invoice.date | date: 'dd/MM/yyyy' }}</p>
     <p>Invoice number: {{ invoice.id }}</p>
     <p>Customer number: {{ invoice.customerId }}</p>
+    <p>Expiration date: {{ invoice.expirationDate | date: 'dd/MM/yyyy' }}</p>
   </div>
 
   <div class="table-wrapper">
