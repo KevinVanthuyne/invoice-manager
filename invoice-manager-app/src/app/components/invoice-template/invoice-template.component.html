@@ -36,7 +36,14 @@
         <td>{{ expense.description }}</td>
         <td>{{ expense.quantity }}</td>
         <td>€ {{ expense.unitPrice }}</td>
-        <td>€ {{ expense.unitPrice * expense.quantity }}</td>
+        <td>
+          €
+          {{
+            expense.quantity
+              ? expense.unitPrice * expense.quantity
+              : expense.unitPrice
+          }}
+        </td>
       </tr>
       <tr class="vertical-fill"></tr>
       <tr class="border-top">
