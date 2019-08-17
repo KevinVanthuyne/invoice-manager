@@ -1,6 +1,6 @@
 # InvoiceManagerApp
 
-Angular frontend application for generating pdf invoices.
+Angular frontend application for generating pdf invoices. Accompanied by the [Invoice Manager Backend](https://github.com/KevinVanthuyne/invoice-manager-backend)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
