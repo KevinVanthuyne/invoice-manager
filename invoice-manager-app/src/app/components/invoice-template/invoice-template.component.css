@@ -1,9 +1,12 @@
-.container {
+.page {
   display: flex;
   flex-direction: column;
   padding: 10px 30px;
   font-size: 10px;
-  height: 800px;
+  word-spacing: 0.17em;
+  /* this width and height is important to fit the html onto the a4 pdf size */
+  width: 533px;
+  height: 820px;
 }
 
 .header {
@@ -72,4 +75,22 @@ td {
 .footer {
   text-align: center;
   border-top: 2px solid black;
+  line-height: 0.6em;
+}
+
+.conditions {
+  color: gray;
+  line-height: 1.5em;
+  margin-top: 5em;
+  padding-left: 1.5em;
+  flex-grow: 1;
+}
+
+.conditions li {
+  margin-bottom: 1.5em;
+}
+
+.conditions-footer {
+  color: gray;
+  margin-bottom: 4em;
 }
