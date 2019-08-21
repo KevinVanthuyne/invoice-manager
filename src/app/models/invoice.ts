@@ -1,9 +1,11 @@
-import { Expense } from './expense';
 import { Moment } from 'moment';
+
+import { Customer } from './customer';
+import { Expense } from './expense';
 
 export class Invoice {
   id: string;
-  customerId: string;
+  customer: Customer;
   expenses: Expense[];
   tax: number;
   date: Moment;

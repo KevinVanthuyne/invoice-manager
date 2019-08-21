@@ -18,10 +18,24 @@
   <h1>Invoice</h1>
 
   <div class="invoice-info">
-    <p>Date: {{ invoice.date | date: 'dd/MM/yyyy' }}</p>
-    <p>Invoice number: {{ invoice.id }}</p>
-    <p>Customer number: {{ invoice.customerId }}</p>
-    <p>Expiration date: {{ invoice.expirationDate | date: 'dd/MM/yyyy' }}</p>
+    <div class="invoice-info__column">
+      <p>Date: {{ invoice.date | date: 'dd/MM/yyyy' }}</p>
+      <p>Invoice number: {{ invoice.id }}</p>
+      <p>Customer number: {{ invoice.customer.customerNumber }}</p>
+      <p>Expiration date: {{ invoice.expirationDate | date: 'dd/MM/yyyy' }}</p>
+    </div>
+
+    <div class="invoice-info__column">
+      <p>{{ invoice.customer.name }}</p>
+      <p>
+        {{ invoice.customer.address.street }}
+        {{ invoice.customer.address.houseNumber }},
+        {{ invoice.customer.address.zipcode }}
+        {{ invoice.customer.address.city }}
+      </p>
+      <p>{{ invoice.customer.email }}</p>
+      <p>{{ invoice.customer.bankAccount }}</p>
+    </div>
   </div>
 
   <div class="table-wrapper">

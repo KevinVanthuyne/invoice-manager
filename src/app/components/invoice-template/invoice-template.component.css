@@ -34,6 +34,11 @@ h1 {
   margin-bottom: 1em;
 }
 
+.invoice-info__column {
+  display: inline-block;
+  margin-right: 2em;
+}
+
 .table-wrapper {
   margin-bottom: 30px;
   flex-grow: 1;
