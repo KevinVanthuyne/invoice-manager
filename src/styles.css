@@ -34,6 +34,17 @@ input {
   border-radius: 3px;
   padding: 5px;
   height: 20px;
+  width: 200px;
+}
+
+select {
+  margin-bottom: 0.5rem;
+  margin-right: 0.7em;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding: 5px;
+  height: 30px;
+  width: 200px;
 }
 
 button {

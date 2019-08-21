@@ -6,6 +6,8 @@ import * as moment from 'moment';
 
 import { InvoiceService } from '../../services/invoice.service';
 import { Invoice } from 'src/app/models/Invoice';
+import { CustomerService } from 'src/app/services/customer.service';
+import { Customer } from 'src/app/models/customer';
 
 @Component({
   selector: 'app-invoice-form',
@@ -13,11 +15,12 @@ import { Invoice } from 'src/app/models/Invoice';
   styleUrls: ['./invoice-form.component.css'],
 })
 export class InvoiceFormComponent implements OnInit {
-  dateFormat = 'YYYY-MM-DD';
+  private dateFormat = 'YYYY-MM-DD';
+  private customers: Customer[];
 
   invoiceForm = this.formBuilder.group({
     id: [uuid()],
-    customerId: [''],
+    customer: [''],
     expenses: this.formBuilder.array([]),
     tax: [21],
     date: [moment().format(this.dateFormat)],
@@ -30,11 +33,14 @@ export class InvoiceFormComponent implements OnInit {
 
   constructor(
     private invoiceService: InvoiceService,
+    private customerService: CustomerService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
+    this.retrieveCustomers();
+
     const invoice = this.invoiceService.get();
     if (invoice) {
       invoice.expenses.forEach(() => this.addExpense());
@@ -42,6 +48,12 @@ export class InvoiceFormComponent implements OnInit {
     } else {
       this.addExpense();
     }
+  }
+
+  retrieveCustomers() {
+    this.customerService.getAllCustomers().subscribe(response => {
+      this.customers = response.data;
+    });
   }
 
   addExpense() {
