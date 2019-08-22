@@ -17,9 +17,10 @@ import { Customer } from 'src/app/models/customer';
 export class InvoiceFormComponent implements OnInit {
   private dateFormat = 'YYYY-MM-DD';
   private customers: Customer[];
+  private nextId: number;
 
   invoiceForm = this.formBuilder.group({
-    id: [uuid()],
+    id: [''],
     customer: [''],
     expenses: this.formBuilder.array([]),
     tax: [21],
@@ -39,7 +40,8 @@ export class InvoiceFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.retrieveCustomers();
+    this.getCustomers();
+    this.setNextInvoiceId();
 
     const invoice = this.invoiceService.get();
     if (invoice) {
@@ -50,9 +52,16 @@ export class InvoiceFormComponent implements OnInit {
     }
   }
 
-  retrieveCustomers() {
+  getCustomers() {
     this.customerService.getAllCustomers().subscribe(response => {
       this.customers = response.data;
+    });
+  }
+
+  setNextInvoiceId() {
+    this.invoiceService.getNextId().subscribe(response => {
+      this.nextId = response.data.nextId;
+      this.invoiceForm.controls['id'].setValue(response.data.nextId);
     });
   }
 
