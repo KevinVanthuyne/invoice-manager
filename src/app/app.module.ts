@@ -9,6 +9,7 @@ import { InvoicePdfPreviewComponent } from './components/invoice-pdf-preview/inv
 import { AppRoutingModule } from './app-routing.module';
 import { InvoiceTemplateComponent } from './components/invoice-template/invoice-template.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { CustomerFormComponent } from './components/customer-form/customer-form.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     InvoicePdfPreviewComponent,
     InvoiceTemplateComponent,
     NavBarComponent,
+    CustomerFormComponent,
   ],
   imports: [
     BrowserModule,
