@@ -34,6 +34,6 @@ export class InvoicePdfPreviewComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/invoice']);
+    this.router.navigate(['/invoice-form']);
   }
 }
