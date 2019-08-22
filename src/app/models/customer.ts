@@ -1,5 +1,11 @@
+export enum CustomerType {
+  CORPORATE = 'Corporate',
+  PRIVATE = 'Private',
+}
+
 export class Customer {
   customerNumber: string;
+  type: CustomerType;
   name: string;
   email?: string;
   bankAccount?: string;
@@ -15,6 +21,7 @@ export class Customer {
 
 export let createCustomer = ({
   customerNumber,
+  type,
   name,
   email,
   bankAccount,
@@ -27,6 +34,7 @@ export let createCustomer = ({
 }) => {
   const customer = new Customer();
   if (customerNumber) customer.customerNumber = customerNumber;
+  if (type) customer.type = type;
   if (name) customer.name = name;
   if (email) customer.email = email;
   if (bankAccount) customer.bankAccount = bankAccount;
