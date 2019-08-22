@@ -1,0 +1,80 @@
+<form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="customerNumber">Customer number</label>
+    <input
+      type="text"
+      id="customerNumber"
+      name="customerNumber"
+      formControlName="customerNumber"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="type">Customer type</label>
+    <select name="type" id="type" formControlName="type">
+      <option value="" disabled selected>Select a customer type</option>
+      <option *ngFor="let type of customerTypes" [ngValue]="type">
+        {{ type }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="customerNumber">Name</label>
+    <input type="text" id="name" name="name" formControlName="name" />
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" formControlName="email" />
+  </div>
+
+  <div class="form-group">
+    <label for="bankAccount">Bank account</label>
+    <input
+      type="text"
+      id="bankAccount"
+      name="bankAccount"
+      formControlName="bankAccount"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="phoneNumber">Phone number</label>
+    <input
+      type="text"
+      id="phoneNumber"
+      name="phoneNumber"
+      formControlName="phoneNumber"
+    />
+  </div>
+
+  <h3>Address</h3>
+
+  <div class="form-group">
+    <label for="street">Street</label>
+    <input type="text" id="street" name="street" formControlName="street" />
+  </div>
+
+  <div class="form-group">
+    <label for="houseNumber">House number</label>
+    <input
+      type="text"
+      id="houseNumber"
+      name="houseNumber"
+      formControlName="houseNumber"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="zipCode">Zip code</label>
+    <input type="text" id="zipCode" name="zipCode" formControlName="zipCode" />
+  </div>
+
+  <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" id="city" name="city" formControlName="city" />
+  </div>
+
+  <button type="submit" class="save">Add customer</button>
+</form>

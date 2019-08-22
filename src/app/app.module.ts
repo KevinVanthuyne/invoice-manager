@@ -8,6 +8,8 @@ import { InvoiceFormComponent } from './components/invoice-form/invoice-form.com
 import { InvoicePdfPreviewComponent } from './components/invoice-pdf-preview/invoice-pdf-preview.component';
 import { AppRoutingModule } from './app-routing.module';
 import { InvoiceTemplateComponent } from './components/invoice-template/invoice-template.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { CustomerFormComponent } from './components/customer-form/customer-form.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { InvoiceTemplateComponent } from './components/invoice-template/invoice-
     InvoiceFormComponent,
     InvoicePdfPreviewComponent,
     InvoiceTemplateComponent,
+    NavBarComponent,
+    CustomerFormComponent,
   ],
   imports: [
     BrowserModule,

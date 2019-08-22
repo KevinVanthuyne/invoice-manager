@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray } from '@angular/forms';
+import { FormBuilder, FormArray, FormGroup } from '@angular/forms';
 import uuid from 'uuid/v4';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
@@ -18,19 +18,7 @@ export class InvoiceFormComponent implements OnInit {
   private dateFormat = 'YYYY-MM-DD';
   private customers: Customer[];
   private nextId: number;
-
-  invoiceForm = this.formBuilder.group({
-    id: [''],
-    customer: [''],
-    expenses: this.formBuilder.array([]),
-    tax: [21],
-    date: [moment().format(this.dateFormat)],
-    expirationDate: [
-      moment()
-        .add(14, 'days')
-        .format(this.dateFormat),
-    ],
-  });
+  private invoiceForm: FormGroup;
 
   constructor(
     private invoiceService: InvoiceService,
@@ -42,6 +30,7 @@ export class InvoiceFormComponent implements OnInit {
   ngOnInit() {
     this.getCustomers();
     this.setNextInvoiceId();
+    this.buildForm();
 
     const invoice = this.invoiceService.get();
     if (invoice) {
@@ -62,6 +51,21 @@ export class InvoiceFormComponent implements OnInit {
     this.invoiceService.getNextId().subscribe(response => {
       this.nextId = response.data.nextId;
       this.invoiceForm.controls['id'].setValue(response.data.nextId);
+    });
+  }
+
+  buildForm() {
+    this.invoiceForm = this.formBuilder.group({
+      id: [''],
+      customer: [''],
+      expenses: this.formBuilder.array([]),
+      tax: [21],
+      date: [moment().format(this.dateFormat)],
+      expirationDate: [
+        moment()
+          .add(14, 'days')
+          .format(this.dateFormat),
+      ],
     });
   }
 
