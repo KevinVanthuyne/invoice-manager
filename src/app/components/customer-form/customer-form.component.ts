@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class CustomerFormComponent implements OnInit {
   private customerForm: FormGroup;
   private customerTypes: String[];
+  private isCorporate: boolean = false;
 
   constructor(
     private customerService: CustomerService,
@@ -28,7 +29,9 @@ export class CustomerFormComponent implements OnInit {
   buildForm() {
     this.customerForm = this.formBuilder.group({
       customerNumber: [],
-      type: [],
+      type: [CustomerType.PRIVATE],
+      businessName: [],
+      vatNumber: [],
       name: [],
       email: [],
       bankAccount: [],
@@ -38,6 +41,14 @@ export class CustomerFormComponent implements OnInit {
       city: [],
       phoneNumber: [],
     });
+  }
+
+  onTypeChange(type) {
+    if (type === CustomerType.CORPORATE) {
+      this.isCorporate = true;
+    } else {
+      this.isCorporate = false;
+    }
   }
 
   onSubmit() {
