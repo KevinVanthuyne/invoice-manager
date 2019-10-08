@@ -32,4 +32,10 @@ export class InvoiceService {
       this.invoice
     );
   }
+
+  getFilename(): String {
+    return this.invoice.customer
+      ? `${this.invoice.customer.customerNumber}_Invoice${this.invoice.id}.pdf`
+      : `Invoice${this.invoice.id}.pdf`;
+  }
 }
