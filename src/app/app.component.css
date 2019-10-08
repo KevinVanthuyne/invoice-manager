@@ -8,4 +8,5 @@ main {
   background-color: white;
   padding: 2em;
   border-radius: 3px;
+  min-width: 500px;
 }

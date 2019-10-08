@@ -8,6 +8,8 @@ import { InvoiceService } from '../../services/invoice.service';
 import { Invoice } from 'src/app/models/Invoice';
 import { CustomerService } from 'src/app/services/customer.service';
 import { Customer } from 'src/app/models/customer';
+import { Expense } from 'src/app/models/expense';
+import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
   selector: 'app-invoice-form',
@@ -17,33 +19,40 @@ import { Customer } from 'src/app/models/customer';
 export class InvoiceFormComponent implements OnInit {
   private dateFormat = 'YYYY-MM-DD';
   private customers: Customer[];
+  private expenseTypes: Expense[];
   private nextId: number;
   private invoiceForm: FormGroup;
 
   constructor(
     private invoiceService: InvoiceService,
     private customerService: CustomerService,
+    private expenseService: ExpenseService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
     this.getCustomers();
+    this.getExpenseTypes();
     this.setNextInvoiceId();
     this.buildForm();
 
     const invoice = this.invoiceService.get();
     if (invoice) {
-      invoice.expenses.forEach(() => this.addExpense());
+      invoice.expenses.forEach(() => this.addEmptyExpense());
       this.invoiceForm.setValue(invoice);
-    } else {
-      this.addExpense();
     }
   }
 
   getCustomers() {
     this.customerService.getAllCustomers().subscribe(response => {
       this.customers = response.data;
+    });
+  }
+
+  getExpenseTypes() {
+    this.expenseService.getAllExpenseTypes().subscribe(response => {
+      this.expenseTypes = response.data;
     });
   }
 
@@ -58,6 +67,7 @@ export class InvoiceFormComponent implements OnInit {
     this.invoiceForm = this.formBuilder.group({
       id: [''],
       customer: [''],
+      expenseType: [''],
       expenses: this.formBuilder.array([]),
       tax: [21],
       date: [moment().format(this.dateFormat)],
@@ -69,8 +79,20 @@ export class InvoiceFormComponent implements OnInit {
     });
   }
 
-  addExpense() {
-    this.expenses.push(this.createEmptyExpense());
+  onExpenseSelect(expenseId) {
+    this.expenseService.getExpense(expenseId).subscribe(response => {
+      const expense: Expense = response.data;
+      this.expenses.push(
+        this.formBuilder.group({
+          id: [expense.id],
+          description: [expense.description],
+          quantity: [''],
+          unitPrice: [expense.unitPrice],
+        })
+      );
+      // Todo deselect option
+      this.invoiceForm.controls['expenseType'].reset();
+    });
   }
 
   removeExpense(index: number) {
@@ -81,13 +103,15 @@ export class InvoiceFormComponent implements OnInit {
     return this.invoiceForm.get('expenses') as FormArray;
   }
 
-  createEmptyExpense() {
-    return this.formBuilder.group({
-      id: [uuid()],
-      description: [''],
-      quantity: [''],
-      unitPrice: [''],
-    });
+  addEmptyExpense() {
+    this.expenses.push(
+      this.formBuilder.group({
+        id: [uuid()],
+        description: [''],
+        quantity: [''],
+        unitPrice: [''],
+      })
+    );
   }
 
   onSubmit() {
