@@ -1,7 +1,7 @@
 <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="id">Expense ID</label>
-    <input type="text" id="id" name="id" formControlName="id" />
+    <input type="text" id="id" name="id" formControlName="id" readonly />
   </div>
 
   <div class="form-group">

@@ -27,4 +27,8 @@ export class ExpenseService {
       expense
     );
   }
+
+  getNextId(): Observable<JsonResponse> {
+    return this.http.get<JsonResponse>(`${environment.apiUrl}/expenseIds/next`);
+  }
 }

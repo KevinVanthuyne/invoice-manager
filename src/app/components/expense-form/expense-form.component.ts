@@ -17,8 +17,8 @@ export class ExpenseFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // TODO get expense id from backend
     this.buildForm();
+    this.setNextExpenseId();
   }
 
   buildForm() {
@@ -29,12 +29,21 @@ export class ExpenseFormComponent implements OnInit {
     });
   }
 
+  setNextExpenseId() {
+    this.expenseService.getNextId().subscribe(response => {
+      this.expenseForm.controls['id'].setValue(response.data.nextId);
+    });
+  }
+
   onSubmit() {
     const formData = this.expenseForm.value;
     const expense = { ...formData };
     this.expenseService.createExpense(expense).subscribe(response => {
       alert(`${response.status}: ${response.message}`);
-      if (response.status == Status.SUCCESS) this.expenseForm.reset();
+      if (response.status == Status.SUCCESS) {
+        this.expenseForm.reset();
+        this.setNextExpenseId();
+      }
     });
   }
 }
