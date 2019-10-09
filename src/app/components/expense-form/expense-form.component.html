@@ -1,0 +1,28 @@
+<form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="id">Expense ID</label>
+    <input type="text" id="id" name="id" formControlName="id" readonly />
+  </div>
+
+  <div class="form-group">
+    <label for="description">Expense description</label>
+    <input
+      type="text"
+      id="description"
+      name="description"
+      formControlName="description"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="unitPrice">Unit Price</label>
+    <input
+      type="number"
+      id="unitPrice"
+      name="unitPrice"
+      formControlName="unitPrice"
+    />
+  </div>
+
+  <button type="submit" class="save">Add expense</button>
+</form>
