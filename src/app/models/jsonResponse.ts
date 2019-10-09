@@ -1,5 +1,10 @@
+export enum Status {
+  SUCCESS = 'success',
+  ERROR = 'error',
+}
+
 export class JsonResponse {
-  status: string;
+  status: Status;
   message: string;
   data: any;
 }

@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { InvoiceTemplateComponent } from './components/invoice-template/invoice-template.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CustomerFormComponent } from './components/customer-form/customer-form.component';
+import { ExpenseFormComponent } from './components/expense-form/expense-form.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CustomerFormComponent } from './components/customer-form/customer-form.
     InvoiceTemplateComponent,
     NavBarComponent,
     CustomerFormComponent,
+    ExpenseFormComponent,
   ],
   imports: [
     BrowserModule,

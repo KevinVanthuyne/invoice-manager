@@ -90,7 +90,6 @@ export class InvoiceFormComponent implements OnInit {
           unitPrice: [expense.unitPrice],
         })
       );
-      // Todo deselect option
       this.invoiceForm.controls['expenseType'].reset();
     });
   }
